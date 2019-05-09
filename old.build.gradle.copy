@@ -1,0 +1,36 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.4.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'hr.croz'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compileOnly 'org.projectlombok:lombok:1.16.20' //dodala
+	compile 'org.springframework.boot:spring-boot-starter' //implementation
+	compile 'org.springframework.boot:spring-boot-starter-web' //implementation
+	compile 'org.springframework.boot:spring-boot-starter-data-jpa' //implementation
+	compile 'org.liquibase:liquibase-core' //implementation
+	//runtimeOnly 'org.postgresql:postgresql'
+	runtime 'org.postgresql:postgresql:42.2.1'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+				
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+
+	
+	////implementation 'org.flywaydb:flyway-core'
+
+	////runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+
+
+}

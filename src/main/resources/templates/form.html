@@ -1,7 +1,6 @@
-<!DOCTYPE HTML>
 <html>
     <body>
-        <form action="#" th:action="@{/}" th:object="${personForm}" method="post">
+        <form action="#" th:action="@{/new}" th:object="${personForm}" method="post">
             <table>
                 <tr>
                     <td>Name:</td>
@@ -20,26 +19,3 @@
         </form>
     </body>
 </html>
-
-<!--  
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body>
-    <p th:text="'Hello, ' + ${content} + '!'" />
-</body>
-</html>
--->
-<!--  
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body>
-    <p th:text="'Hello, ' + ${name} + '!'" />
-</body>
-</html>
--->

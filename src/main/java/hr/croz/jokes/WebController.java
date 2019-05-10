@@ -17,13 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-
-/*In Spring’s approach to building web sites, HTTP requests are handled by a controller. 
- * You can easily identify these requests by the @Controller annotation. In the following example,
- *  the GreetingController handles GET requests for /greeting by returning the name of a View, 
- *  in this case, "greeting". A View is responsible for rendering the HTML content:
- */
-
+import hr.croz.model.JokeForm;
 
 @Controller
 public class WebController implements WebMvcConfigurer {
@@ -35,12 +29,12 @@ public class WebController implements WebMvcConfigurer {
     }
 
     @GetMapping("/new")
-    public String showForm(PersonForm personForm) {
+    public String showForm(JokeForm jokeForm) {
         return "form";
     }
 
     @PostMapping("/new")
-    public String checkPersonInfo(@Valid PersonForm personForm, BindingResult bindingResult) {
+    public String checkJokeInfo(@Valid JokeForm jokeForm, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "form";
@@ -48,6 +42,8 @@ public class WebController implements WebMvcConfigurer {
 
         return "redirect:/results";
     }
+
+    
 	
 	/* The @GetMapping annotation ensures that HTTP GET requests to 
 	 /greeting are mapped to the greeting() method.

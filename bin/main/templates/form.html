@@ -1,18 +1,28 @@
 <html>
     <body>
-        <form action="#" th:action="@{/new}" th:object="${personForm}" method="post">
+        <form action="#" th:action="@{/new}" th:object="${jokeForm}" method="post">
             <table>
                 <tr>
-                    <td>Name:</td>
-                    <td><input type="text" th:field="*{name}" /></td>
-                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+                    <td>Content:</td>
+                    <td><input type="text" th:field="*{content}" /></td>
+                    <td th:if="${#fields.hasErrors('content')}" th:errors="*{content}">Content Error</td>
+<!--                 </tr> -->
+<!--                 <tr> -->
+<!--                     <td>Category:</td> -->
+<!--                     <td><input type="select" th:field="*{category}" /></td> -->
+<!--                     <td th:if="${#fields.hasErrors('category')}" th:errors="*{category}">category Error</td> -->
+<!--                 </tr> -->
+<!--                <tr>  -->
+
                 </tr>
                 <tr>
-                    <td>Age:</td>
-                    <td><input type="text" th:field="*{age}" /></td>
-                    <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</td>
+                    <td>Category:</td>
+                    <td><select	 th:field="*{category}" <option value="Mujo">Mujo</option><option value="chuck">Chuck norris</option> /></td>
+                    <td th:if="${#fields.hasErrors('category')}" th:errors="*{category}">category Error</td>
                 </tr>
-                <tr>
+               <tr> 
+
+
                     <td><button type="submit">Submit</button></td>
                 </tr>
             </table>

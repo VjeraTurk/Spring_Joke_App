@@ -16,7 +16,7 @@ import lombok.Data;
 // the JPA annotations to mark it as a managed entity with a primary key, 
 @Data
 @Entity
-public class JokeForm {
+public class Joke {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,11 +30,18 @@ public class JokeForm {
 	@Value("${some.key:0}") //initial value -> 0
 	private int dislikes;
 
-	//@NotEmpty(message = "category may not be empty") 
+	@NotEmpty(message = "category may not be empty") //popunjen!
 	@ManyToOne //@ManyToOne indicates to JPA/Hibernate that Many questions can exist ToOne exam.
 	@JoinColumn(name = "category_id")
-//	private Category category; //popunjen!
-	private String category; //popunjen!
+	private Category category;
+	
+	//trebalo bi biti protected!
+	public Joke() {}; //The default constructor only exists for the sake of JPA
+	
+//	public Joke(String content, Category category) {
+//		this.content = content;
+//		this.category = category;
+//	};
 	
 	public int getId() {
 		return id;
@@ -67,25 +74,12 @@ public class JokeForm {
 		this.dislikes = dislikes;
 	}
 
-	public String getCategory() {
+	public Category getCategory() {
 			return category;
 		}
 
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
-	}
-
-	//	public Category getCategory() {
-//		return category;
-//	}
-//
-//	public void setCategory(Category category) {
-//		this.category = category;
-//	}
-	@Override
-	public String toString() {
-		return "JokeForm [id=" + id + ", content=" + content + ", likes=" + likes + ", dislikes=" + dislikes
-				+ ", category=" + category + "]";
 	}
 
 }

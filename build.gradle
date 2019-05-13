@@ -21,6 +21,12 @@ bootJar {
     baseName = 'gs-serving-web-content'
     version =  '0.1.0'
 }
+// 12.5.:
+bootJar {
+    baseName = 'gs-accessing-data-postgresql'
+    version =  '0.1.0'
+}
+
 
 repositories {
     mavenCentral()
@@ -43,6 +49,8 @@ dependencies {
 	compile 'org.liquibase:liquibase-core' //implementation
 	//runtimeOnly 'org.postgresql:postgresql'
 	runtime 'org.postgresql:postgresql:42.2.1'
+	
+    compile 'postgresql:postgresql-connector-java' // 12.5.
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	//implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'

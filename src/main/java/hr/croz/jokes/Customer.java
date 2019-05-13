@@ -8,13 +8,15 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
+//iz nekog razloga mora biti u istom paketu ko i UserRepository, mozda mu smeta da je konstruktor protected ?!
+//tutorial kaze da zelimo a konstruktor bude protected
 @Data //13.5.
 @Entity // This tells Hibernate to make a table out of this class
-public class Customer {
+public class Customer { // https://stackoverflow.com/a/9036651/4771688
 	
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO) //(strategy=GenerationType.IDENTITY
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //(strategy=GenerationType.IDENTITY
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // https://stackoverflow.com/a/35957473/4771688
     private int id; //set to int instead of Integer 13.5.
 
     private String name;

@@ -1,6 +1,7 @@
 <html>
     <body>
-        <form action="#" th:action="@{/new}" th:object="${jokeForm}" method="post">
+        <form action="#" th:action="@{/new}" th:object="${jokeForm}" method="get"> 
+<!-- method post/get -->
             <table>
                 <tr>
                     <td>Content:</td>
@@ -18,8 +19,8 @@
                 <tr>
                     <td>Category:</td>
  <!--                    <td><select	 th:field="*{category}" <option value="Mujo">Mujo</option><option value="chuck">Chuck norris</option> /></td> -->
-                    <td><input type="text" th:field="*{category}" /></td>
-                    <td th:if="${#fields.hasErrors('category')}" th:errors="*{category}">category Error</td>
+<!--                     <td><input type="text" th:field="*{category}" /></td> -->
+<!--                     <td th:if="${#fields.hasErrors('category')}" th:errors="*{category}">category Error</td> -->
                 </tr>
                <tr> 
 

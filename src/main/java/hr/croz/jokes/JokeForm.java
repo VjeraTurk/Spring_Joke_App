@@ -2,9 +2,6 @@ package hr.croz.jokes;
 
 import javax.validation.constraints.NotEmpty;
 
-import hr.croz.model.Category;
-import hr.croz.model.Joke;
-
 public class JokeForm {
 
 	@NotEmpty(message = "content may not be empty") 

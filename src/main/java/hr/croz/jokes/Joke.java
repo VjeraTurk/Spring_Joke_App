@@ -1,4 +1,4 @@
-package hr.croz.model;
+package hr.croz.jokes;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,9 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import lombok.Data;
 
-//It simply uses the @Data annotation to avoid the boilerplate code, 
-// the JPA annotations to mark it as a managed entity with a primary key, 
-@Data
+@Data //It simply uses the @Data annotation to avoid the boilerplate code, the JPA annotations to mark it as a managed entity with a primary key, 
 @Entity
 public class Joke {
 

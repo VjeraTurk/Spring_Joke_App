@@ -1,4 +1,4 @@
-package hr.croz.model;
+package hr.croz.jokes;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,12 +9,11 @@ import javax.validation.constraints.NotEmpty;
 import lombok.Data;
 
 @Data
-@Entity
-//Entity. An object fundamentally defined not by its attributes, but by a thread of continuity and identity. (Meaning it must have Id)
+@Entity //Entity. An object fundamentally defined not by its attributes, but by a thread of continuity and identity. (Meaning it must have Id)
 public class Category {
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	public int getId() {

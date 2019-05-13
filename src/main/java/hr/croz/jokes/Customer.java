@@ -5,25 +5,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
 import lombok.Data;
 
-//sto znaci  @Data anotacija?
 @Data //13.5.
 @Entity // This tells Hibernate to make a table out of this class
 public class Customer {
+	
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    //@GeneratedValue(strategy = GenerationType.AUTO) //(strategy=GenerationType.IDENTITY
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //(strategy=GenerationType.IDENTITY
+    private int id; //set to int instead of Integer 13.5.
 
     private String name;
 
     private String email;
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

@@ -50,7 +50,7 @@ dependencies {
 	//runtimeOnly 'org.postgresql:postgresql'
 	runtime 'org.postgresql:postgresql:42.2.1'
 	
-    compile 'postgresql:postgresql-connector-java' // 12.5.
+    //compile 'postgresql:postgresql-connector-java' // 12.5. //14.5.
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	//implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'

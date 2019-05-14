@@ -18,9 +18,9 @@
                 </tr>
                 <tr>
                     <td>Category:</td>
- <!--                    <td><select	 th:field="*{category}" <option value="Mujo">Mujo</option><option value="chuck">Chuck norris</option> /></td> -->
+                    <td><select th:field="*{category}"> <option value="chuck">Chuck norris</option><option value="mujo">Mujo</option><select/></td>
 <!--                     <td><input type="text" th:field="*{category}" /></td> -->
-<!--                     <td th:if="${#fields.hasErrors('category')}" th:errors="*{category}">category Error</td> -->
+                    <td th:if="${#fields.hasErrors('category')}" th:errors="*{category}">category Error</td>
                 </tr>
                <tr> 
 

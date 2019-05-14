@@ -10,6 +10,8 @@ import lombok.Data;
 
 //iz nekog razloga mora biti u istom paketu ko i UserRepository, mozda mu smeta da je konstruktor protected ?!
 //tutorial kaze da zelimo a konstruktor bude protected
+//The Customer class is annotated with @Entity, indicating that it is a JPA entity.
+//For lack of a @Table annotation, it is assumed that this entity will be mapped to a table named Customer.
 @Data //13.5.
 @Entity // This tells Hibernate to make a table out of this class
 public class Customer { // https://stackoverflow.com/a/9036651/4771688

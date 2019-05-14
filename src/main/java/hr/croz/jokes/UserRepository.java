@@ -1,5 +1,7 @@
 package hr.croz.jokes;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 
 
@@ -8,5 +10,8 @@ import org.springframework.data.repository.CrudRepository;
 // CRUD refers Create, Read, Update, Delete
 
 public interface UserRepository extends CrudRepository<Customer, Integer> {
+	
+    List<Customer> findByName(String name);
+    List<Customer> findByEmail(String email); //sintaksa findBy___
 
 }

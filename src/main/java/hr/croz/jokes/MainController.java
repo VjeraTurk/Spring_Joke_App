@@ -74,6 +74,7 @@ public class MainController implements WebMvcConfigurer{
 	@GetMapping(path="/")
 	public @ResponseBody Iterable<Customer> getAllUsers() {
 		// This returns a JSON or XML with the users
+		System.out.println(userRepository.findAll().toString());
 		return userRepository.findAll();
 	}
 	
@@ -85,7 +86,6 @@ public class MainController implements WebMvcConfigurer{
 	//gs-serving-web-content
 	
 	@GetMapping("/greeting")
- 
     public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
         model.addAttribute("name", name);
         return "greeting";

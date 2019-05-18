@@ -1,12 +1,8 @@
-/*Preporučujemo da napravite novi razred JokeForm koji će predstavljati sadržaj forme. Neka se
-forma nalazi na poveznici http://localhost:8080/new.*/
-
 package hr.croz.jokes;
 import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
 
 public class JokeForm {
 

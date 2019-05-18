@@ -6,28 +6,38 @@
 </head>
 <body>
 	<div class="container">
-		<table >
+		<table class="serial" >
 		<thead>
 		<tr>
-			<th>#</th> <th>Kategorija</th> <th>Vic</th> <th>Like</th><th>Dislike</th><th>Raz</th>
+			<th>#</th> <th>Kategorija</th> <th>Vic</th> <th>Likes</th><th>Dislikes</th><th>Raz</th><th> </th><th> </th>
 		</tr>
 		<tbody>
-			<tr th:each="joke: ${data.content}">
-				<td th:text="${joke.id}"></td>
-				<td th:text="${joke.category.name}"></td>
-				<td th:text="${joke.content}"></td>
-				<td th:text="${joke.likes}"></td>
-				<td th:text="${joke.dislikes}"></td>
-				<td th:text="${joke.getScore()}"></td> <!-- radi i s metodama -->
+			<tr th:each="joke,iterator: ${data.content}">
+<!-- 				<td th:text="${joke.id}"></td> pogrešno!! -->	
+				<td th:text="${iterator.index+(jpp*currentpage)} + ."></td>			<!-- mora biti točka -->	
+				<td th:text="${joke.category.getName()}"></td>
+				<td th:text="${joke.getContent()}"></td>
+				<td th:text="${joke.getLikes()}"></td>
+				<td th:text="${joke.getDislikes()}"></td>
+				<td th:text="${joke.getScore()}"></td> <!-- radi i s metodama -->			
+			<form action="#" th:action="@{/}" th:object="${joke}" method="POST"> 
+				<input type="hidden" name="id" th:value="${joke.getId()}" />			
+				<td><input type="submit"  value="like" name="action" /></td>
+    		    <td><input type="submit" value="dislike" name="action"/></td>	
+			</form>
+			
 			</tr>
-		
 		</tbody>
 		</table>
-	
+		<hr/>
+		<ul class ="nav nav-pills">
+		<tr class="nav-item" 
+		th:each="i: ${#numbers.sequence(0,data.totalPages-1)}">
+			<a th:href="@{/(page=${i})}" th:text="${i}" class="nav-link"
+			th:classappend="${currentPage}==${i}?'active':''"></a>	
+		</tr>
+		</ul>
 	</div>
-
-
-
     <p>Add a new joke <a href="/new">here</a></p>
 </body>
 </html>

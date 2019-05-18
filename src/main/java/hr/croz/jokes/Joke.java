@@ -29,6 +29,8 @@ public class Joke {
 	@Value("${some.key:0}") //initial value -> 0
 	private int dislikes;
 
+	
+	
 	//@NotEmpty(message = "category may not be empty") //popunjen!
 	@NotNull(message = "nije popunjen!")
 	@ManyToOne //@ManyToOne indicates to JPA/Hibernate that Many questions can exist ToOne exam.

@@ -11,7 +11,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import hr.croz.jokes.Joke;
 
 //public interface JokeRepository extends JpaRepository<Joke, Integer> {
-public interface JokeRepository extends PagingAndSortingRepository<Joke, Integer> {
+public interface JokeRepository extends PagingAndSortingRepository<Joke, Integer>,CrudRepository<Joke, Integer> {
     List<Joke> findByContent(String content);
     List<Joke> findById(int id); //sintaksa findBy___
 }

@@ -29,13 +29,13 @@ public class NewController implements WebMvcConfigurer{
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/new").setViewName("new");
     }
-    @Autowired //mora ici
+    
+    @Autowired 
 	private CategoryRepository categoryRepository;
     public List<Category> categories; 	
     @Autowired
     private JokeRepository jokeRepository;
     public List<Joke> jokes; 	
-    
     
     @GetMapping("/new")
     public String showForm(@ModelAttribute JokeForm jokeForm ) { 
@@ -49,24 +49,6 @@ public class NewController implements WebMvcConfigurer{
 	   
 	   return "form";
     }
-    
-    
-    /*
-    @GetMapping("/new")
-    public String showForm(Model model ) { //@ModelAttribute JokeForm jokeForm
-       DEBUG("showForm");
-       JokeForm jokeForm = new JokeForm();
-       categories = categoryRepository.findAll();
-       
-       DEBUG(categories.get(0).toString());
-	   DEBUG(categories.get(1).toString());
-	   
-	   //model.addAttribute("categories",categories); 
-	   jokeForm.setCategories(categories);
-	   model.addAttribute("jokeForm", jokeForm);	      
-	   
-	   return "form";
-    }*/
     
     @PostMapping("/new")
     public String submitForm(@ModelAttribute @Valid JokeForm jokeForm, BindingResult bindingResult) { //Model model?

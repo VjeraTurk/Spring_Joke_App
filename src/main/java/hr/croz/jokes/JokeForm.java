@@ -5,39 +5,19 @@ package hr.croz.jokes;
 import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 public class JokeForm {
 
 	@NotEmpty(message = "content may not be empty")
 	private String content;
-	
-	@NotEmpty(message = "categoryId may not be empty") 
+
+	@NotNull(message = "category(Id) may not be empty") 
 	private Integer categoryId;
-
-	@NotEmpty(message = "category may not be empty") 
-	private Category category;
-
-/*
-	private Category category;
 	
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-*/
 	private List<Category> categories;
-	
-	public List<Category> getCategories() {
-		return categories;
-	}
 
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
-	}
 	
 	public String getContent() {
 		return content;
@@ -53,6 +33,14 @@ public class JokeForm {
 
 	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
+	}
+	
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
 	}
 	
 }

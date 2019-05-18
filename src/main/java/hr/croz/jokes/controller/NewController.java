@@ -1,15 +1,15 @@
 package hr.croz.jokes.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -31,91 +31,61 @@ public class NewController implements WebMvcConfigurer{
     }
     @Autowired //mora ici
 	private CategoryRepository categoryRepository;
-	
+    public List<Category> categories; 	
     @Autowired
     private JokeRepository jokeRepository;
-    public List<Category> categories; 
+    public List<Joke> jokes; 	
     
     
     @GetMapping("/new")
-    public String showForm(Model model) {
+    public String showForm(@ModelAttribute JokeForm jokeForm ) { 
        DEBUG("showForm");
-       JokeForm jokeForm = new JokeForm();
-       
        categories = categoryRepository.findAll();
        DEBUG(categories.get(0).toString());
 	   DEBUG(categories.get(1).toString());
-	   
-	   
+	   //model.addAttribute("categories",categories); 
 	   jokeForm.setCategories(categories);
-	   model.addAttribute("jokeForm", jokeForm);	      
-	   //model.addAttribute("categories",categories);
+//	   model.addAttribute("jokeForm", jokeForm);	      
 	   
 	   return "form";
-    }
-    
-   /* @GetMapping("/new")
-    public String showForm( JokeForm jokeForm) {
-       DEBUG("showForm");
-	   categories = categoryRepository.findAll();
-
-       DEBUG(categories.get(0).toString());
-	   DEBUG(categories.get(1).toString());
-	   
-	   jokeForm.setCategories(categories); //radi li se to tako?!
-       
-	   return "form";
-    }*/
-    
-    
-    
-    @PostMapping("/new")
-    @ResponseBody
-    public String submitForm(@ModelAttribute JokeForm jokeForm) {
-
-    	DEBUG("submitForm");
-        //String content = jokeForm.getContent();
-        //DEBUG(model.jokeForm.getContent());
-        DEBUG(jokeForm.getContent());
-        //DEBUG(jokeForm.getCategoryId().toString());
-        DEBUG(Integer.toString(jokeForm.getCategoryId()));
-        Joke j = new Joke();
-		j.setContent(jokeForm.getContent());
-		//j.setCategoryId(jokeForm.getCategoryId());
-		
-		//DEBUG(Integer.toString(jokeForm.getCategoryId()));
-		System.out.println(Integer.toString(jokeForm.getCategoryId()));
-		//j.setCategory(categoryRepository.findById(jokeForm.getCategoryId().intValue()).get(0));// bit će jedna
-	//	j.setCategory(categoryRepository.findById(jokeForm.getCategoryId()).get(0));// bit će jedna
-		
-		jokeRepository.save(j); //save
-		
-		return "Saved";
     }
     
     
     /*
+    @GetMapping("/new")
+    public String showForm(Model model ) { //@ModelAttribute JokeForm jokeForm
+       DEBUG("showForm");
+       JokeForm jokeForm = new JokeForm();
+       categories = categoryRepository.findAll();
+       
+       DEBUG(categories.get(0).toString());
+	   DEBUG(categories.get(1).toString());
+	   
+	   //model.addAttribute("categories",categories); 
+	   jokeForm.setCategories(categories);
+	   model.addAttribute("jokeForm", jokeForm);	      
+	   
+	   return "form";
+    }*/
+    
     @PostMapping("/new")
-    @ResponseBody
-    public String submitForm(@ModelAttribute JokeForm jokeForm) {
-    	
+    public String submitForm(@ModelAttribute @Valid JokeForm jokeForm, BindingResult bindingResult) { //Model model?
+
     	DEBUG("submitForm");
-        //String content = jokeForm.getContent();
-        DEBUG(jokeForm.getContent());
-        //DEBUG(jokeForm.getCategoryId().toString());
-        DEBUG(Integer.toString(jokeForm.getCategoryId()));
+
+        if (bindingResult.hasErrors()) {
+        	jokeForm.setCategories(categories); // izgubi se
+            return "form";
+        }
+    	DEBUG(jokeForm.getContent());
+        DEBUG(jokeForm.getCategoryId().toString());
+        
         Joke j = new Joke();
 		j.setContent(jokeForm.getContent());
-		//j.setCategoryId(jokeForm.getCategoryId());
+		Category c = categoryRepository.findById(jokeForm.getCategoryId().intValue()).get(0);
+		j.setCategory(c);
+		jokeRepository.save(j);
 		
-		//DEBUG(Integer.toString(jokeForm.getCategoryId()));
-		System.out.println(Integer.toString(jokeForm.getCategoryId()));
-		//j.setCategory(categoryRepository.findById(jokeForm.getCategoryId().intValue()).get(0));// bit će jedna
-		j.setCategory(categoryRepository.findById(jokeForm.getCategoryId()).get(0));// bit će jedna
-		
-		jokeRepository.save(j); //save
-		
-		return "Saved";
-    }*/
-	
+		return "redirect:/";
+    }
 }

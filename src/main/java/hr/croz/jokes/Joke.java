@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Value;
 
@@ -20,7 +21,7 @@ public class Joke {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@NotEmpty(message = "content may not be empty") //neprazan!
+	@NotEmpty(message = "nije neprazan!") //neprazan!
 	private String content; 
 	
 	@Value("${some.key:0}") //initial value -> 0
@@ -28,7 +29,8 @@ public class Joke {
 	@Value("${some.key:0}") //initial value -> 0
 	private int dislikes;
 
-	@NotEmpty(message = "category may not be empty") //popunjen!
+	//@NotEmpty(message = "category may not be empty") //popunjen!
+	@NotNull(message = "nije popunjen!")
 	@ManyToOne //@ManyToOne indicates to JPA/Hibernate that Many questions can exist ToOne exam.
 	@JoinColumn(name = "category_id")
 	private Category category;  // jel ima smisla da je tipa Category? -> stack kaze dada 

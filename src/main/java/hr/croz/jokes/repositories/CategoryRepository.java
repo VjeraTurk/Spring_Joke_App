@@ -1,4 +1,4 @@
-package hr.croz.jokes.repository;
+package hr.croz.jokes.repositories;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;

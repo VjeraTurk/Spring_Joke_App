@@ -1,4 +1,4 @@
-package hr.croz.jokes.controller;
+package hr.croz.jokes.controllers;
 
 import java.util.List;
 
@@ -16,8 +16,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import hr.croz.jokes.Category;
 import hr.croz.jokes.Joke;
 import hr.croz.jokes.JokeForm;
-import hr.croz.jokes.repository.CategoryRepository;
-import hr.croz.jokes.repository.JokeRepository;
+import hr.croz.jokes.repositories.CategoryRepository;
+import hr.croz.jokes.repositories.JokeRepository;
 @Controller
 public class NewController implements WebMvcConfigurer{
 	

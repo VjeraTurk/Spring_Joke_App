@@ -76,5 +76,9 @@ public class Joke {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+	public int getScore() {
+		
+		return this.likes-this.dislikes;
+	}
 
 }

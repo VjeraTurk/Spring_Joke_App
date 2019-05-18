@@ -36,32 +36,86 @@ public class NewController implements WebMvcConfigurer{
     private JokeRepository jokeRepository;
     public List<Category> categories; 
     
+    
     @GetMapping("/new")
-    //@RequestMapping(value = "new")
-    public String showForm(/*JokeForm jokeForm,*/ Model model) {
-	   
-       JokeForm form = new JokeForm();
-       model.addAttribute("jokeForm", form);
-    	
+    public String showForm(Model model) {
        DEBUG("showForm");
-
-	   categories = categoryRepository.findAll();
-	   model.addAttribute("categories",categories);
+       JokeForm jokeForm = new JokeForm();
+       
+       categories = categoryRepository.findAll();
+       DEBUG(categories.get(0).toString());
+	   DEBUG(categories.get(1).toString());
+	   
+	   
+	   jokeForm.setCategories(categories);
+	   model.addAttribute("jokeForm", jokeForm);	      
+	   //model.addAttribute("categories",categories);
+	   
 	   return "form";
     }
-    /*
-    @GetMapping("/new")
-    public String jokeForm(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        return "new";
-    } */
+    
+   /* @GetMapping("/new")
+    public String showForm( JokeForm jokeForm) {
+       DEBUG("showForm");
+	   categories = categoryRepository.findAll();
+
+       DEBUG(categories.get(0).toString());
+	   DEBUG(categories.get(1).toString());
+	   
+	   jokeForm.setCategories(categories); //radi li se to tako?!
+       
+	   return "form";
+    }*/
+    
+    
     
     @PostMapping("/new")
     @ResponseBody
     public String submitForm(@ModelAttribute JokeForm jokeForm) {
+
     	DEBUG("submitForm");
-        String content = jokeForm.getContent();
-    	return content; //name of the View
+        //String content = jokeForm.getContent();
+        //DEBUG(model.jokeForm.getContent());
+        DEBUG(jokeForm.getContent());
+        //DEBUG(jokeForm.getCategoryId().toString());
+        DEBUG(Integer.toString(jokeForm.getCategoryId()));
+        Joke j = new Joke();
+		j.setContent(jokeForm.getContent());
+		//j.setCategoryId(jokeForm.getCategoryId());
+		
+		//DEBUG(Integer.toString(jokeForm.getCategoryId()));
+		System.out.println(Integer.toString(jokeForm.getCategoryId()));
+		//j.setCategory(categoryRepository.findById(jokeForm.getCategoryId().intValue()).get(0));// bit će jedna
+	//	j.setCategory(categoryRepository.findById(jokeForm.getCategoryId()).get(0));// bit će jedna
+		
+		jokeRepository.save(j); //save
+		
+		return "Saved";
     }
+    
+    
+    /*
+    @PostMapping("/new")
+    @ResponseBody
+    public String submitForm(@ModelAttribute JokeForm jokeForm) {
+    	
+    	DEBUG("submitForm");
+        //String content = jokeForm.getContent();
+        DEBUG(jokeForm.getContent());
+        //DEBUG(jokeForm.getCategoryId().toString());
+        DEBUG(Integer.toString(jokeForm.getCategoryId()));
+        Joke j = new Joke();
+		j.setContent(jokeForm.getContent());
+		//j.setCategoryId(jokeForm.getCategoryId());
+		
+		//DEBUG(Integer.toString(jokeForm.getCategoryId()));
+		System.out.println(Integer.toString(jokeForm.getCategoryId()));
+		//j.setCategory(categoryRepository.findById(jokeForm.getCategoryId().intValue()).get(0));// bit će jedna
+		j.setCategory(categoryRepository.findById(jokeForm.getCategoryId()).get(0));// bit će jedna
+		
+		jokeRepository.save(j); //save
+		
+		return "Saved";
+    }*/
 	
 }

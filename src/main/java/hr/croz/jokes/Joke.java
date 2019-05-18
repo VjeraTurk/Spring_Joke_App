@@ -17,7 +17,7 @@ import lombok.Data;
 public class Joke {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@NotEmpty(message = "content may not be empty") //neprazan!
@@ -31,7 +31,7 @@ public class Joke {
 	@NotEmpty(message = "category may not be empty") //popunjen!
 	@ManyToOne //@ManyToOne indicates to JPA/Hibernate that Many questions can exist ToOne exam.
 	@JoinColumn(name = "category_id")
-	private Category category;
+	private Category category;  // jel ima smisla da je tipa Category? -> stack kaze dada 
 	
 	//trebalo bi biti protected!
 	public Joke() {}; //The default constructor only exists for the sake of JPA

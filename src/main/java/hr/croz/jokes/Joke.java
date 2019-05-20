@@ -9,7 +9,6 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.jboss.logging.Property;
 import org.springframework.beans.factory.annotation.Value;
 
 import lombok.Data;

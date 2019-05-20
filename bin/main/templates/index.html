@@ -12,7 +12,7 @@
 			<th>#</th> <th>Kategorija</th> <th>Vic</th> <th>Likes</th><th>Dislikes</th><th>Raz</th><th> </th><th> </th>
 		</tr>
 		<tbody>
-			<tr th:each="joke,iterator: ${data.content}">
+			<tr th:each="joke,iterator: ${data}">
 <!-- 				<td th:text="${joke.id}"></td> pogrešno!! -->	
 				<td th:text="${iterator.index+(jpp*currentpage)} + ."></td>			<!-- mora biti točka -->	
 				<td th:text="${joke.category.getName()}"></td>
@@ -32,7 +32,7 @@
 		<hr/>
 		<ul class ="nav nav-pills">
 		<tr class="nav-item" 
-		th:each="i: ${#numbers.sequence(0,data.totalPages-1)}">
+		th:each="i: ${#numbers.sequence(0,4-1)}">
 			<a th:href="@{/(page=${i})}" th:text="${i}" class="nav-link"
 			th:classappend="${currentPage}==${i}?'active':''"></a>	
 		</tr>

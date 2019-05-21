@@ -12,10 +12,12 @@
 			<th>#</th> <th>Kategorija</th> <th>Vic</th> <th>Likes</th><th>Dislikes</th><th>Raz</th><th> </th><th> </th>
 		</tr>
 		<tbody>
+<!-- 			<tr th:each="joke,iterator: ${data.content}"> -->
 			<tr th:each="joke,iterator: ${data.content}">
 <!-- 				<td th:text="${joke.id}"></td> pogrešno!! -->	
 				<td th:text="${iterator.index+(jpp*currentpage)} + ."></td>			<!-- mora biti točka -->	
-				<td th:text="${joke.category.getName()}"></td>
+<!-- 				<td th:text="${joke.category.getName()}"></td> --> <!-- org.springframework.expression.spel.SpelEvaluationException: EL1008E: Property or field 'category' cannot be found on object of type 'java.lang.Object[]' - maybe not public or not valid? -->
+				<td th:text="${joke.getCategory().getName()}"></td>
 				<td th:text="${joke.getContent()}"></td>
 				<td th:text="${joke.getLikes()}"></td>
 				<td th:text="${joke.getDislikes()}"></td>

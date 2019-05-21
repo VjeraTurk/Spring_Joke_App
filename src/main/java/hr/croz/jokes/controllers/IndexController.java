@@ -3,7 +3,7 @@ package hr.croz.jokes.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 //import org.springframework.data.domain.Pageable;
-
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import hr.croz.jokes.Joke;
 import hr.croz.jokes.repositories.JokeRepository;
@@ -35,7 +34,12 @@ public class IndexController {
 
 		//Gdje raditi sortiranje? Na client/server side -> kod paginacije preporuka server :https://stackoverflow.com/questions/10721430/where-data-sort-should-be-done-server-or-client
 		
-		model.addAttribute("data",jokeRepository.findAllByScore(PageRequest.of(page,jokesPerPage))); 		
+		model.addAttribute("data",jokeRepository.findAllByScore(PageRequest.of(page,jokesPerPage))); 			
+		
+		//model.addAttribute("data",jokeRepository.findAllByScore(PageRequest.of(page,jokesPerPage,Sort.by("score")) )); 	
+
+		//DEBUG("***"+jokeRepository.findAllByScore(PageRequest.of(page,jokesPerPage)).getContent());
+
 		model.addAttribute("jpp",jokesPerPage);
 		model.addAttribute("currentpage",page);
 

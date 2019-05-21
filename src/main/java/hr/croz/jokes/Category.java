@@ -12,11 +12,6 @@ import lombok.Data;
 @Entity //Entity. An object fundamentally defined not by its attributes, but by a thread of continuity and identity. (Meaning it must have Id)
 public class Category {
 
-	@Override
-	public String toString() {
-		return "Category [id=" + id + ", name=" + name + "]";
-	}
-
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -38,6 +33,11 @@ public class Category {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", name=" + name + "]";
 	}
 
 	

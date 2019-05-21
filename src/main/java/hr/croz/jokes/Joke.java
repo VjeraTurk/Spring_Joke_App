@@ -17,6 +17,17 @@ import lombok.Data;
 @Entity
 public class Joke {
 
+	public Joke(int id, @NotEmpty(message = "nije neprazan!") String content, int likes, int dislikes,
+			@NotNull(message = "nije popunjen!") Category category) {
+		super();
+		this.id = id;
+		this.content = content;
+		this.likes = likes;
+		this.dislikes = dislikes;
+		this.category = category;
+	}
+
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

@@ -15,15 +15,16 @@
 <!-- 			<tr th:each="joke,iterator: ${data.content}"> -->
 			<tr th:each="joke,iterator: ${data.content}">
 <!-- 				<td th:text="${joke.id}"></td> pogrešno!! -->	
-				<td th:text="${iterator.index+(jpp*currentpage)} + ."></td>			<!-- mora biti točka -->	
+				<td th:text="${iterator.index+1+(jpp*currentpage)} + ."></td>			<!-- mora biti točka -->	
 <!-- 				<td th:text="${joke.category.getName()}"></td> --> <!-- org.springframework.expression.spel.SpelEvaluationException: EL1008E: Property or field 'category' cannot be found on object of type 'java.lang.Object[]' - maybe not public or not valid? -->
 				<td th:text="${joke.getCategory().getName()}"></td>
 				<td th:text="${joke.getContent()}"></td>
 				<td th:text="${joke.getLikes()}"></td>
 				<td th:text="${joke.getDislikes()}"></td>
 				<td th:text="${joke.getScore()}"></td> <!-- radi i s metodama -->			
-			<form action="#" th:action="@{/}" th:object="${joke}" method="POST"> 
-				<input type="hidden" name="id" th:value="${joke.getId()}" />			
+			<form action="/?page=currentpage" th:action="@{/}" th:object="${joke}" method="POST"> 
+				<input type="hidden" name="id" th:value="${joke.getId()}" />
+				<input type="hidden" name="page" th:value="${currentpage}" />	<!-- HAX2MAX - mora postojati bolje rješenje od ovog -->		
 				<td><input type="submit"  value="like" name="action" /></td>
     		    <td><input type="submit" value="dislike" name="action"/></td>	
 			</form>
@@ -36,7 +37,7 @@
 		<tr class="nav-item" 
 		th:each="i: ${#numbers.sequence(0,data.getTotalPages()-1)}">
 			<a th:href="@{/(page=${i})}" th:text="${i}" class="nav-link"
-			th:classappend="${currentPage}==${i}?'active':''"></a>	
+			th:classappend="${currentpage}==${i}?'active':''"></a>	
 		</tr>
 		</ul>
 	</div>

@@ -22,7 +22,7 @@ import hr.croz.jokes.repositories.JokeRepository;
 public class NewController implements WebMvcConfigurer{
 	
 	public void DEBUG(String s) {
-		System.out.println(s);
+		//System.out.println(s);
 	}
 
     @Override
@@ -44,8 +44,9 @@ public class NewController implements WebMvcConfigurer{
        DEBUG(categories.get(0).toString());
 	   DEBUG(categories.get(1).toString());
 	   //model.addAttribute("categories",categories); 
+	   //model.addAttribute("jokeForm", jokeForm);	      
+	   
 	   jokeForm.setCategories(categories);
-//	   model.addAttribute("jokeForm", jokeForm);	      
 	   
 	   return "form";
     }
@@ -56,7 +57,7 @@ public class NewController implements WebMvcConfigurer{
     	DEBUG("submitForm");
 
         if (bindingResult.hasErrors()) {
-        	jokeForm.setCategories(categories); // izgubi se
+        	jokeForm.setCategories(categories); // izgubi se, potrebno ponovno postaviti
             return "form";
         }
     	DEBUG(jokeForm.getContent());

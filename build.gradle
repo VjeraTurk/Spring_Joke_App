@@ -39,20 +39,19 @@ targetCompatibility = '1.8'
 
 
 dependencies {
-//does it matter implementation/compile -> jel kraci build bez compile?
 	compileOnly 'org.projectlombok:lombok:1.16.20' //dodala
-	compile 'org.springframework.boot:spring-boot-starter' //implementation
-	compile 'org.springframework.boot:spring-boot-starter-web' //implementation
-	compile 'org.springframework.boot:spring-boot-starter-thymeleaf'	
+	implementation 'org.springframework.boot:spring-boot-starter' 
+	implementation 'org.springframework.boot:spring-boot-starter-web' 
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'	
 	
-	compile 'org.springframework.boot:spring-boot-starter-data-jpa' //implementation	
-	compile 'org.liquibase:liquibase-core' //implementation
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa' 
+	implementation 'org.liquibase:liquibase-core' 
 	runtime 'org.postgresql:postgresql:42.2.1'
 	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	compile 'org.springframework.boot:spring-boot-devtools' 
+	implementation 'org.springframework.boot:spring-boot-devtools' 
 	testCompile 'junit:junit' //dodala za web (tut)
 	
-	 compile 'org.springframework.boot:spring-boot-starter-security'
+	 implementation 'org.springframework.boot:spring-boot-starter-security'
 
 }

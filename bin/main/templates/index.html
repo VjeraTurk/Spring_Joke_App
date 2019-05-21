@@ -12,11 +12,10 @@
 			<th>#</th> <th>Kategorija</th> <th>Vic</th> <th>Likes</th><th>Dislikes</th><th>Raz</th><th> </th><th> </th>
 		</tr>
 		<tbody>
-<!-- 			<tr th:each="joke,iterator: ${data.content}"> -->
 			<tr th:each="joke,iterator: ${data.content}">
 <!-- 				<td th:text="${joke.id}"></td> pogrešno!! -->	
 				<td th:text="${iterator.index+1+(jpp*currentpage)} + ."></td>			<!-- mora biti točka -->	
-<!-- 				<td th:text="${joke.category.getName()}"></td> --> <!-- org.springframework.expression.spel.SpelEvaluationException: EL1008E: Property or field 'category' cannot be found on object of type 'java.lang.Object[]' - maybe not public or not valid? -->
+<!-- 				<td th:text="${joke.category.getName()}"></td> --> <!--Kad koristim JPQL org.springframework.expression.spel.SpelEvaluationException: EL1008E: Property or field 'category' cannot be found on object of type 'java.lang.Object[]' - maybe not public or not valid? -->
 				<td th:text="${joke.getCategory().getName()}"></td>
 				<td th:text="${joke.getContent()}"></td>
 				<td th:text="${joke.getLikes()}"></td>
@@ -41,12 +40,8 @@
 		</tr>
 		</ul>
 	</div>
-<!--     <p>Idi na <a href="/login"> prijavu</a></p> -->
     <p>Dodaj <a href="/new"> novi vic</a></p>
     <p>Idi na <a href="/home"> home</a></p>
 
-<!--         <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>  -->
 </body>
 </html>

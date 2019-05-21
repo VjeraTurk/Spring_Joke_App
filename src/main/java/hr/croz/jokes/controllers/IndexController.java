@@ -17,7 +17,7 @@ import hr.croz.jokes.repositories.JokeRepository;
 public class IndexController {
 
 	public void DEBUG(String s) {
-		System.out.println(s);
+		//System.out.println(s);
 	}
 
 	@Autowired //obavezno!
@@ -27,16 +27,15 @@ public class IndexController {
 	@GetMapping("/")
 	public String showPage(Model model,@RequestParam (defaultValue="0") int page) {
 	
-		DEBUG(Integer.toString(page));		
+		//DEBUG(Integer.toString(page));		
 		//Gdje raditi sortiranje? Na client/server side -> kod paginacije preporuka server :https://stackoverflow.com/questions/10721430/where-data-sort-should-be-done-server-or-client
+		
 		//model.addAttribute("data", jokeRepository.findAll(PageRequest.of(page,jokesPerPage , Sort.by(Direction.DESC,"likes")))); 
 		//model.addAttribute(jokeRepository.findAll(JpaSort.unsafe("getScore()"))); //model.addAttribute(jokeRepository.findAll(JpaSort.unsafe("likes-dislikes")));	->ne radi
-
-		model.addAttribute("data",jokeRepository.findAllByScore(PageRequest.of(page,jokesPerPage))); 			
-		
-		//model.addAttribute("data",jokeRepository.findAllByScore(PageRequest.of(page,jokesPerPage,Sort.by("score")) )); 	
+		//model.addAttribute("data",jokeRepository.findAllByScore(PageRequest.of(page,jokesPerPage,Sort.by("score")) )); 		
 		//DEBUG("***"+jokeRepository.findAllByScore(PageRequest.of(page,jokesPerPage)).getContent());
 
+		model.addAttribute("data",jokeRepository.findAllByScore(PageRequest.of(page,jokesPerPage))); 					
 		model.addAttribute("jpp",jokesPerPage);
 		model.addAttribute("currentpage",page);
 
@@ -45,7 +44,7 @@ public class IndexController {
 	
 	@PostMapping(value="/", params="action=like")	
 	public String like(@RequestParam int id,  Model model, @RequestParam (defaultValue="0") int page) {
-		DEBUG("like()");
+		//DEBUG("like()");
 		//DEBUG(Integer.toString(page));
 		Joke j = jokeRepository.findById(id).get(0);
 		j.setLikes(j.getLikes()+1);
@@ -58,7 +57,7 @@ public class IndexController {
 	
 	@PostMapping(value="/", params="action=dislike")	
 	public String dislike(@RequestParam int id,  Model model, @RequestParam (defaultValue="0") int page) {
-		DEBUG("dislike()");
+		//DEBUG("dislike()");
 		//DEBUG(Integer.toString(page));
 		Joke j = jokeRepository.findById(id).get(0);
 		j.setDislikes(j.getDislikes()+1);

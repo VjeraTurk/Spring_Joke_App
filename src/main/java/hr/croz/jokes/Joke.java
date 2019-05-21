@@ -12,11 +12,11 @@ import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Value;
 
 import lombok.Data;
-//It simply uses the @Data annotation to avoid the boilerplate code, the JPA annotations to mark it as a managed entity with a primary key, 
-@Data 
+@Data //It simply uses the @Data annotation to avoid the boilerplate code, the JPA annotations to mark it as a managed entity with a primary key, 
 @Entity
 public class Joke {
 
+	/*
 	public Joke(int id, @NotEmpty(message = "nije neprazan!") String content, int likes, int dislikes,
 			@NotNull(message = "nije popunjen!") Category category) {
 		super();
@@ -25,8 +25,7 @@ public class Joke {
 		this.likes = likes;
 		this.dislikes = dislikes;
 		this.category = category;
-	}
-
+	}*/
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,16 +38,13 @@ public class Joke {
 	private int likes; 
 	@Value("${some.key:0}") //initial value -> 0
 	private int dislikes;
-
-	
 	
 	//@NotEmpty(message = "category may not be empty") //popunjen!
 	@NotNull(message = "nije popunjen!")
 	@ManyToOne //@ManyToOne indicates to JPA/Hibernate that Many questions can exist ToOne exam.
 	@JoinColumn(name = "category_id")
-	private Category category;  // jel ima smisla da je tipa Category? -> stack kaze dada 
+	private Category category;  // jel ima smisla da je tipa Category ili bolje category_id
 	
-	//trebalo bi biti protected!
 	public Joke() {}; //The default constructor only exists for the sake of JPA
 	
 	public int getId() {

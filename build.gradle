@@ -47,18 +47,12 @@ dependencies {
 	
 	compile 'org.springframework.boot:spring-boot-starter-data-jpa' //implementation	
 	compile 'org.liquibase:liquibase-core' //implementation
-	//runtimeOnly 'org.postgresql:postgresql'
 	runtime 'org.postgresql:postgresql:42.2.1'
 	
-    //compile 'postgresql:postgresql-connector-java' // 12.5. //14.5.
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-	//implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-	//implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
-
-	////implementation 'org.flywaydb:flyway-core'
-	//runtimeOnly 'org.springframework.boot:spring-boot-devtools' // 
-	compile 'org.springframework.boot:spring-boot-devtools' // dodala za web (tut)
+	compile 'org.springframework.boot:spring-boot-devtools' 
 	testCompile 'junit:junit' //dodala za web (tut)
+	
+	 compile 'org.springframework.boot:spring-boot-starter-security'
 
 }
